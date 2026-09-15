@@ -6,7 +6,7 @@ const protect = asyncHandler(async (req, res, next) => {
     let token;
 
     // Read the JWT from the cookie (if using cookies) OR header
-    // For this simple implementation we'll look for Bearer token in header as first priority
+    // For this simple implementation we'll look for Bearer token in header as first priority 
     token = req.headers.authorization && req.headers.authorization.startsWith('Bearer')
         ? req.headers.authorization.split(' ')[1]
         : null; // or check cookies req.cookies.jwt
@@ -30,6 +30,8 @@ const protect = asyncHandler(async (req, res, next) => {
         throw new Error('Not authorized, no token');
     }
 });
+
+// ADMIN
 
 const admin = (req, res, next) => {
     if (req.user && req.user.isAdmin) {
