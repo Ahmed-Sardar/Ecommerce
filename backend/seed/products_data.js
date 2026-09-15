@@ -1,0 +1,327 @@
+const products = [
+    // --- ELECTRONICS ---
+    {
+        name: 'Sony WH-1000XM5 Noise Canceling Headphones',
+        image: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=1976&auto=format&fit=crop',
+        description: 'Industry-leading noise cancellation, exceptional sound quality, and crystal-clear hands-free calling.',
+        brand: 'Sony',
+        category: 'Electronics',
+        subCategory: 'Audio',
+        price: 26990,
+        countInStock: 25,
+        rating: 4.8,
+        numReviews: 145,
+        tags: ['headphones', 'wireless', 'noise cancelling', 'sony', 'audio']
+    },
+    {
+        name: 'Apple MacBook Air M2',
+        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=2026&auto=format&fit=crop',
+        description: 'Strikingly thin and fast. Redesigned around the next-generation M2 chip.',
+        brand: 'Apple',
+        category: 'Electronics',
+        subCategory: 'Laptops',
+        price: 114900,
+        countInStock: 10,
+        rating: 4.9,
+        numReviews: 89,
+        tags: ['laptop', 'apple', 'macbook', 'computer', 'm2']
+    },
+    {
+        name: 'Samsung 55" 4K Smart TV',
+        image: 'https://images.unsplash.com/photo-1593784653277-59c41f92c68a?q=80&w=2070&auto=format&fit=crop',
+        description: 'Crystal Clear 4K UHD Resolution with Smart Tizen OS and HDR support.',
+        brand: 'Samsung',
+        category: 'Electronics',
+        subCategory: 'Television',
+        price: 45990,
+        countInStock: 15,
+        rating: 4.6,
+        numReviews: 210,
+        tags: ['tv', 'smart tv', '4k', 'samsung', 'television']
+    },
+    {
+        name: 'Canon EOS R6 Mirrorless Camera',
+        image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1964&auto=format&fit=crop',
+        description: 'Full-frame mirrorless camera for photographers and videographers.',
+        brand: 'Canon',
+        category: 'Electronics',
+        subCategory: 'Cameras',
+        price: 215990,
+        countInStock: 5,
+        rating: 4.9,
+        numReviews: 45,
+        tags: ['camera', 'dslr', 'mirrorless', 'canon', 'photography']
+    },
+    {
+        name: 'Logitech MX Master 3S Mouse',
+        image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=2067&auto=format&fit=crop',
+        description: 'Performance wireless mouse with ultra-fast scrolling and ergonomic design.',
+        brand: 'Logitech',
+        category: 'Electronics',
+        subCategory: 'Accessories',
+        price: 8995,
+        countInStock: 40,
+        rating: 4.8,
+        numReviews: 320,
+        tags: ['mouse', 'wireless', 'logitech', 'computer accessories']
+    },
+
+    // --- FASHION ---
+    {
+        name: 'Premium Cotton Linen Shirt',
+        image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=2070&auto=format&fit=crop',
+        description: 'Breathable cotton linen blend, perfect for summer casual or semi-formal wear.',
+        brand: 'FabIndia',
+        category: 'Fashion',
+        subCategory: 'Men',
+        price: 1899,
+        countInStock: 50,
+        rating: 4.4,
+        numReviews: 88,
+        tags: ['shirt', 'men', 'cotton', 'summer', 'clothing']
+    },
+    {
+        name: 'Women\'s Floral Maxi Dress',
+        image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1946&auto=format&fit=crop',
+        description: 'Elegant floral print maxi dress with a flowy silhouette.',
+        brand: 'H&M',
+        category: 'Fashion',
+        subCategory: 'Women',
+        price: 2499,
+        countInStock: 30,
+        rating: 4.5,
+        numReviews: 120,
+        tags: ['dress', 'women', 'floral', 'fashion', 'clothing']
+    },
+    {
+        name: 'Levi\'s Men\'s 511 Slim Jeans',
+        image: 'https://images.unsplash.com/photo-1542272617-08f08630329e?q=80&w=1974&auto=format&fit=crop',
+        description: 'Modern slim fit jeans that sit below the waist with a slim leg.',
+        brand: 'Levi\'s',
+        category: 'Fashion',
+        subCategory: 'Men',
+        price: 3299,
+        countInStock: 45,
+        rating: 4.6,
+        numReviews: 250,
+        tags: ['jeans', 'denim', 'levis', 'men', 'pants']
+    },
+    {
+        name: 'Puma Running Shoes',
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop',
+        description: 'Lightweight running shoes with superior cushioning and grip.',
+        brand: 'Puma',
+        category: 'Fashion',
+        subCategory: 'Footwear',
+        price: 4999,
+        countInStock: 20,
+        rating: 4.7,
+        numReviews: 180,
+        tags: ['shoes', 'running', 'sports', 'footwear', 'puma']
+    },
+    {
+        name: 'Classic Aviator Sunglasses',
+        image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=2080&auto=format&fit=crop',
+        description: 'Timeless aviator design with UV400 protection.',
+        brand: 'Ray-Ban',
+        category: 'Fashion',
+        subCategory: 'Accessories',
+        price: 6590,
+        countInStock: 15,
+        rating: 4.8,
+        numReviews: 95,
+        tags: ['sunglasses', 'aviator', 'fashion', 'accessories']
+    },
+
+    // --- HOME & FURNITURE ---
+    {
+        name: 'Modern 3-Seater Sofa',
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=2070&auto=format&fit=crop',
+        description: 'Contemporary design with premium fabric upholstery and solid wood legs.',
+        brand: 'Urban Ladder',
+        category: 'Furniture',
+        subCategory: 'Living Room',
+        price: 34999,
+        countInStock: 5,
+        rating: 4.5,
+        numReviews: 42,
+        tags: ['sofa', 'couch', 'furniture', 'living room', 'modern']
+    },
+    {
+        name: 'Minimalist Coffee Table',
+        image: 'https://images.unsplash.com/photo-1532323544230-ac8d5ce69ddc?q=80&w=2066&auto=format&fit=crop',
+        description: 'Round wooden coffee table with a sleek and simple design.',
+        brand: 'Pepperfry',
+        category: 'Furniture',
+        subCategory: 'Living Room',
+        price: 5499,
+        countInStock: 12,
+        rating: 4.3,
+        numReviews: 67,
+        tags: ['table', 'coffee table', 'furniture', 'wooden']
+    },
+    {
+        name: 'Queen Size Bed with Storage',
+        image: 'https://images.unsplash.com/photo-1505693416388-b0346efee958?q=80&w=2070&auto=format&fit=crop',
+        description: 'Spacious queen bed with hydraulic storage and cushioned headboard.',
+        brand: 'Wakefit',
+        category: 'Furniture',
+        subCategory: 'Bedroom',
+        price: 18999,
+        countInStock: 8,
+        rating: 4.7,
+        numReviews: 310,
+        tags: ['bed', 'furniture', 'bedroom', 'storage']
+    },
+    {
+        name: 'Ergonomic Office Chair',
+        image: 'https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=2070&auto=format&fit=crop',
+        description: 'High-back mesh chair with adjustable lumbar support and armrests.',
+        brand: 'Green Soul',
+        category: 'Furniture',
+        subCategory: 'Office',
+        price: 9999,
+        countInStock: 25,
+        rating: 4.6,
+        numReviews: 155,
+        tags: ['chair', 'office chair', 'furniture', 'ergonomic']
+    },
+    {
+        name: 'Decorative Floor Lamp',
+        image: 'https://images.unsplash.com/photo-1513506003013-1b6a411a0658?q=80&w=2070&auto=format&fit=crop',
+        description: 'Stylish floor lamp with warm LED lighting for a cozy ambiance.',
+        brand: 'Philips',
+        category: 'Home',
+        subCategory: 'Lighting',
+        price: 3299,
+        countInStock: 30,
+        rating: 4.4,
+        numReviews: 80,
+        tags: ['lamp', 'lighting', 'home decor', 'floor lamp']
+    },
+
+    // --- BEAUTY & WELLNESS ---
+    {
+        name: 'Vitamin C Face Serum',
+        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop',
+        description: 'Brightening serum with 10% Vitamin C and Hyaluronic Acid.',
+        brand: 'Minimalist',
+        category: 'Beauty',
+        subCategory: 'Skincare',
+        price: 699,
+        countInStock: 100,
+        rating: 4.8,
+        numReviews: 540,
+        tags: ['skincare', 'serum', 'vitamin c', 'beauty', 'face']
+    },
+    {
+        name: 'Matte Lipstick Set',
+        image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=2030&auto=format&fit=crop',
+        description: 'Set of 5 long-lasting matte lipsticks in nude shades.',
+        brand: 'Lakme',
+        category: 'Beauty',
+        subCategory: 'Makeup',
+        price: 1299,
+        countInStock: 60,
+        rating: 4.5,
+        numReviews: 230,
+        tags: ['lipstick', 'makeup', 'beauty', 'cosmetics']
+    },
+    {
+        name: 'Organic Shampoo & Conditioner',
+        image: 'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?q=80&w=2070&auto=format&fit=crop',
+        description: 'Sulfate-free haircare duo for damage repair and shine.',
+        brand: 'Mamaearth',
+        category: 'Beauty',
+        subCategory: 'Haircare',
+        price: 899,
+        countInStock: 80,
+        rating: 4.3,
+        numReviews: 190,
+        tags: ['shampoo', 'haircare', 'organic', 'beauty']
+    },
+
+    // --- SPORTS & FITNESS ---
+    {
+        name: 'Non-Slip Yoga Mat',
+        image: 'https://plus.unsplash.com/premium_photo-1661777196224-bfda51e61cfd?q=80&w=2070&auto=format&fit=crop',
+        description: '6mm thick anti-skid yoga mat with carrying strap.',
+        brand: 'Boldfit',
+        category: 'Sports',
+        subCategory: 'Yoga',
+        price: 799,
+        countInStock: 150,
+        rating: 4.6,
+        numReviews: 410,
+        tags: ['yoga', 'mat', 'fitness', 'exercise', 'sports']
+    },
+    {
+        name: 'Adjustable Dumbbells Set',
+        image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=2071&auto=format&fit=crop',
+        description: 'Pair of adjustable dumbbells (2.5kg to 15kg) for home workouts.',
+        brand: 'Core',
+        category: 'Sports',
+        subCategory: 'Gym',
+        price: 4500,
+        countInStock: 20,
+        rating: 4.7,
+        numReviews: 120,
+        tags: ['dumbbells', 'gym', 'fitness', 'weights', 'home gym']
+    },
+    {
+        name: 'Professional Cricket Bat',
+        image: 'https://images.unsplash.com/photo-1593786214580-b789139265f2?q=80&w=2070&auto=format&fit=crop',
+        description: 'Grade 1 English Willow bat with superior stroke play.',
+        brand: 'SG',
+        category: 'Sports',
+        subCategory: 'Cricket',
+        price: 12999,
+        countInStock: 10,
+        rating: 4.9,
+        numReviews: 65,
+        tags: ['cricket', 'bat', 'sports', 'game']
+    },
+
+    // --- KITCHEN & APPLIANCES ---
+    {
+        name: 'Digital Air Fryer 4L',
+        image: 'https://images.unsplash.com/photo-1595535373192-fc04375618f5?q=80&w=2070&auto=format&fit=crop',
+        description: 'Fry, grill, roast and bake with up to 90% less fat.',
+        brand: 'Philips',
+        category: 'Appliances',
+        subCategory: 'Kitchen',
+        price: 7999,
+        countInStock: 35,
+        rating: 4.7,
+        numReviews: 550,
+        tags: ['air fryer', 'kitchen', 'appliance', 'cooking', 'healthy']
+    },
+    {
+        name: 'Electric Kettle 1.5L',
+        image: 'https://images.unsplash.com/photo-1635830232468-b3d952a1762c?q=80&w=1974&auto=format&fit=crop',
+        description: 'Fast boiling stainless steel electric kettle with auto shut-off.',
+        brand: 'Prestige',
+        category: 'Appliances',
+        subCategory: 'Kitchen',
+        price: 849,
+        countInStock: 60,
+        rating: 4.4,
+        numReviews: 320,
+        tags: ['kettle', 'electric', 'kitchen', 'appliance']
+    },
+    {
+        name: 'Robot Vacuum Cleaner',
+        image: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2080&auto=format&fit=crop',
+        description: 'Smart robot vacuum with mapping and mop function.',
+        brand: 'Xiaomi',
+        category: 'Appliances',
+        subCategory: 'Cleaning',
+        price: 24999,
+        countInStock: 12,
+        rating: 4.6,
+        numReviews: 180,
+        tags: ['vacuum', 'robot', 'cleaning', 'smart home', 'appliance']
+    }
+];
+
+export default products;

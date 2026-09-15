@@ -1,0 +1,285 @@
+/* Premium Auth Page Animations */
+
+/* Shake animation for error states */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Pulse animation for background gradients */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Floating animation for subtle movement */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glow effect for focused inputs */
+.input-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.input-glow-error {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button loading animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Success checkmark draw animation */
+@keyframes draw-check {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-check {
+  stroke-dasharray: 100;
+  animation: draw-check 0.8s ease-in-out forwards;
+}
+
+/* Confetti particle animations */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.animate-confetti {
+  animation: confetti-fall 3s linear infinite;
+}
+
+/* Glassmorphism hover effect - Ensure pointer events work */
+.glass-hover {
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  transform: translateY(-2px);
+}
+
+/* Password strength meter animation */
+@keyframes strength-fill {
+  from { width: 0%; }
+  to { width: var(--strength-width); }
+}
+
+.animate-strength {
+  animation: strength-fill 0.5s ease-out forwards;
+}
+
+/* Social button hover effects - Ensure interactivity */
+.social-button {
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.social-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+  pointer-events: none;
+}
+
+.social-button:hover::before {
+  left: 100%;
+}
+
+/* Step indicator animation */
+@keyframes step-complete {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animate-step-complete {
+  animation: step-complete 0.3s ease-in-out;
+}
+
+/* Form slide transitions */
+.slide-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+.slide-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+/* Z-index management for proper layering */
+.auth-background {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.auth-card {
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.auth-overlay {
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.auth-interactive {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Ensure all interactive elements are clickable */
+button, 
+a, 
+input, 
+select, 
+textarea,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+/* Ensure form containers allow interactions */
+form,
+.form-container,
+.auth-form {
+  pointer-events: auto;
+}
+
+/* Decorative elements should not block interactions */
+.decorative,
+.background-element,
+.blur-overlay,
+.gradient-overlay {
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .animate-float {
+    animation: none; /* Disable floating on mobile for better performance */
+  }
+  
+  .glass-hover:hover {
+    transform: none; /* Disable hover transforms on mobile */
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .input-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+  
+  .input-glow-error {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-float,
+  .animate-gradient,
+  .animate-confetti {
+    animation: none;
+  }
+  
+  .glass-hover {
+    transition: none;
+  }
+}
+
+/* Focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Ensure animations don't block interactions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+  pointer-events: auto;
+}
