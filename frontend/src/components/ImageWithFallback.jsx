@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { imageUrl } from '../utils/urls';
 
 const ImageWithFallback = ({ src, alt, className, ...props }) => {
     // Normalization logic: handled by parent or passed as 'src'. 
@@ -21,7 +22,7 @@ const ImageWithFallback = ({ src, alt, className, ...props }) => {
     return (
         <img
             {...props}
-            src={imgSrc}
+            src={imageUrl(imgSrc)}
             alt={alt || 'Product image'}
             className={`${className} ${hasError ? 'object-contain p-4 bg-gray-50' : ''}`}
             onError={handleError}

@@ -1,3 +1,5 @@
+import { imageUrl } from '../../utils/urls';
+
 export const productImage = (src, width = 900) => {
     if (!src) return '/images/placeholder.svg';
     const normalized = src.replace(/\\/g, '/');
@@ -10,7 +12,7 @@ export const productImage = (src, width = 900) => {
         }
         return url.toString();
     }
-    return `/${normalized.replace(/^\/+/, '')}`;
+    return imageUrl(normalized);
 };
 
 export const money = (value) => new Intl.NumberFormat('en-IN', {

@@ -127,7 +127,7 @@ const ProfileScreen = () => {
                                     <tr key={order._id}>
                                         <td className="py-2 px-4 border-b">{order._id}</td>
                                         <td className="py-2 px-4 border-b">{order.createdAt.substring(0, 10)}</td>
-                                        <td className="py-2 px-4 border-b">${order.totalPrice}</td>
+                                        <td className="py-2 px-4 border-b">₹{Number(order.totalPrice).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                                         <td className="py-2 px-4 border-b">
                                             {order.isPaid ? (
                                                 <span className="text-green-600">{order.paidAt.substring(0, 10)}</span>

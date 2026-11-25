@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Rating from './Rating';
 import { FiEye, FiHeart, FiShoppingCart } from 'react-icons/fi';
 import ImageWithFallback from './ImageWithFallback';
+import { imageUrl as resolveImageUrl } from '../utils/urls';
 
 const ProductCard = ({ product, className = '', variant = 'vertical', rounded = false, pageType = 'default' }) => {
     const location = useLocation();
@@ -59,9 +60,7 @@ const ProductCard = ({ product, className = '', variant = 'vertical', rounded = 
 
     const pageClasses = getPageSpecificClasses();
 
-    const imageUrl = product.image?.startsWith('http')
-        ? product.image
-        : `http://localhost:5000/${product.image.replace(/\\/g, '/')}`;
+    const imageUrl = resolveImageUrl(product.image);
 
     return (
         // Plain div — no Framer Motion, no opacity:0 start, no variant dependency.

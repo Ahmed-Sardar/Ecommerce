@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { FiArrowLeft, FiMinus, FiPlus, FiShoppingCart } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import ImageWithFallback from '../components/ImageWithFallback';
+import { imageUrl as resolveImageUrl } from '../utils/urls';
 import heroImage from '../hero.png';
 
 const ProductScreen = () => {
@@ -70,13 +71,9 @@ const ProductScreen = () => {
 //     const imageUrl =
 //   product.image?.startsWith("http")
 //     ? product.image
-//     : `http://localhost:5000/${product.image.replace(/\\/g, "/")}`;
+//     : `${product.image.replace(/\\/g, "/")}`;
 
-        const imageUrl = product?.image
-  ? product.image.startsWith("http")
-    ? product.image
-    : `http://localhost:5000/${product.image.replace(/\\/g, "/")}`
-  : "/images/placeholder.svg";
+    const imageUrl = resolveImageUrl(product?.image);
     return (
         <div className="min-h-screen pt-24 pb-24">
             {isLoading ? (
@@ -107,14 +104,14 @@ const ProductScreen = () => {
                                         className="w-full h-full object-contain mix-blend-multiply transition-transform hover:scale-105 duration-500"
                                     /> */}
                                     {/* <ImageWithFallback
-                                    src={`http://localhost:5000/${product.image.replace(/\\/g, "/")}`}
+                                    src={`${product.image.replace(/\\/g, "/")}`}
                                     alt={product.name}
                                     className="w-full h-full object-contain"
                                     /> */}
                                     {/* <ImageWithFallback
                                         src={
                                         product.image
-                                          ? `http://localhost:5000/${product.image.replace(/\\/g, "/")}`
+                                          ? `${product.image.replace(/\\/g, "/")}`
                                        : "/images/placeholder.jpg"
                                          }
                                         alt={product.name}
@@ -124,7 +121,7 @@ const ProductScreen = () => {
                                          src={
                                         product.image?.startsWith("http")
                                         ? product.image
-                                        : `http://localhost:5000/${product.image.replace(/\\/g, "/")}`
+                                        : `${product.image.replace(/\\/g, "/")}`
                                         }
                                         alt={product.name}
                                        /> */}

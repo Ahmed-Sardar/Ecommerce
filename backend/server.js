@@ -1,4 +1,5 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -43,23 +44,15 @@ app.get('/api/config/paypal', (req, res) =>
 );
 
 // Make uploads folder static
-const __dirname = path.resolve();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.use('/seed_images', express.static(path.join(__dirname, '/seed_images')));
-app.use('/images', express.static(path.join(__dirname, '/backend/public/images')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/frontend/dist')));
-
-    app.get('*', (req, res) =>
-        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
-    );
-} else {
-    app.get('/', (req, res) => {
-        res.send('API is running....');
-    });
-}
+app.get('/', (req, res) => {
+    res.json({ status: 'ok', message: 'LuxeStore API is running' });
+});
 
 app.use(notFound);
 app.use(errorHandler);
