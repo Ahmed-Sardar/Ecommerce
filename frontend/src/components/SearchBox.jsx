@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 const CATEGORIES = [
     'Electronics', 'Fashion', 'Home', 'Beauty', 'Sports', 'Appliances', 'Kitchen', 'Accessories'
 ];
 
-const SearchBox = () => {
+const SearchBox = ({ onNavigate }) => {
     const navigate = useNavigate();
     const { keyword: urlKeyword } = useParams();
     const [keyword, setKeyword] = useState(urlKeyword || '');
@@ -28,17 +28,19 @@ const SearchBox = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         if (keyword.trim()) {
-            navigate(`/search/${keyword.trim()}`);
+            navigate(`/search/${encodeURIComponent(keyword.trim())}`);
             setShowSuggestions(false);
         } else {
             navigate('/');
         }
+        onNavigate?.();
     };
 
     const suggestionHandler = (category) => {
         setKeyword(category);
-        navigate(`/search/${category}`);
+        navigate(`/search/${encodeURIComponent(category)}`);
         setShowSuggestions(false);
+        onNavigate?.();
     };
 
     return (
@@ -46,6 +48,7 @@ const SearchBox = () => {
             <form onSubmit={submitHandler} className="relative group">
                 <input
                     type="text"
+                    aria-label="Search products, brands and categories"
                     name="q"
                     onChange={(e) => setKeyword(e.target.value)}
                     onFocus={() => setShowSuggestions(true)}
@@ -54,14 +57,14 @@ const SearchBox = () => {
                     className="w-full py-2.5 pl-10 pr-4 text-sm bg-gray-100/50 border border-gray-200 rounded-full focus:outline-none focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all duration-300 placeholder-gray-400"
                     autoComplete="off"
                 />
-                <button type="submit" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">
+                <button type="submit" aria-label="Submit product search" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">
                     <FiSearch className="text-lg" />
                 </button>
             </form>
 
             <AnimatePresence>
                 {showSuggestions && (
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
@@ -81,7 +84,7 @@ const SearchBox = () => {
                                 {category}
                             </button>
                         ))}
-                    </motion.div>
+                    </Motion.div>
                 )}
             </AnimatePresence>
         </div>
